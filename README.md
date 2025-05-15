@@ -1,12 +1,66 @@
-# React + Vite
+# 💰 Aplikacja do Zarządzania Budżetem Osobistym
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikacja umożliwiająca śledzenie przychodów i wydatków z możliwością **logowania oraz rejestracji użytkownika**.
 
-Currently, two official plugins are available:
+> ⚠️ Aplikacja **nie jest responsywna** — stworzona do działania na **urządzeniach desktopowych**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🛠 Technologie
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend:** React + Vite
+- **Backend:** Node.js + Express
+- **Baza danych:** MongoDB (Mongoose)
+- **Stylowanie:** CSS
+- **Autoryzacja:** JWT
+
+---
+
+## 📦 Użyte biblioteki
+
+### Frontend:
+- `react-icons` – ikony
+- `recharts` – wykresy (np. kołowe, słupkowe)
+- `react-toastify` – powiadomienia toast
+- `date-fns` – formatowanie dat
+
+### Backend:
+- `express` – serwer HTTP
+- `mongoose` – połączenie z MongoDB
+- `jsonwebtoken` – autoryzacja
+- `cors` – zarządzanie dostępem CORS
+
+---
+
+## ⚠️ Ważne wskazówki
+
+- Podczas **dodawania transakcji typu „Wydatek”**, należy **umieścić znak `-` przed kwotą**, np. `-100`.
+- W przeciwnym razie saldo zostanie niepoprawnie obliczone jako dodatnie.
+
+---
+
+## 🧪 Funkcje
+
+- ✅ Rejestracja i logowanie użytkownika
+- ✅ Dodawanie transakcji z kategorią, datą i opisem
+- ✅ Przegląd salda i historii
+- ✅ Filtrowanie transakcji (ostatnie 30 dni, dochód, wydatek)
+- ✅ Edycja i usuwanie transakcji
+- ✅ Podsumowanie wizualne (wykresy)
+
+---
+
+## 🚀 Deployment
+
+- **Frontend:** [Vercel](https://vercel.com/)
+- **Backend:** [Render](https://render.com/)
+- **Baza danych:** [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+
+---
+
+## 👨‍🎓 Projekt studencki
+
+Aplikacja została stworzona jako **projekt uniwersytecki** w celach edukacyjnych.
+
+---
+
