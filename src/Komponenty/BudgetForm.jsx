@@ -15,6 +15,8 @@ export default function BudgetForm() {
   const [date, setDate] = useState('');
   const [transactions, setTransactions] = useState([]);
 
+  
+
   //  Fetch wszystkich transakcji 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -47,6 +49,7 @@ export default function BudgetForm() {
 
   //  Oblicznaie salda
   const saldo = transactions.reduce((total, t) => total + Number(t.amount), 0);
+
 
   //  Wysłanie do backendu
   const handleSubmit = async (e) => {
@@ -96,6 +99,7 @@ export default function BudgetForm() {
       setTransactions([...transactions, newTransaction]); 
       toast.success("Transakcja dodana pomyślnie!");
 
+
       //Wyczyszczenie pól
       setAmount('');
       setType('')
@@ -106,6 +110,8 @@ export default function BudgetForm() {
     } catch (err) {
       toast.error('Wystąpił błąd sieci: ' + err.message);
     }
+
+
   };
 
   return (
