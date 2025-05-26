@@ -18,7 +18,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
   "https://aplikacja-finansowa-shgq.vercel.app", // Vercel Front-End
-  "https://aplikacja-finansowa-shgq-git-master-norberts-projects-239b10d6.vercel.app/"
+  "https://aplikacja-finansowa-5k91bt1h8-norberts-projects-239b10d6.vercel.app"
 ];
 
 app.use(cors({
