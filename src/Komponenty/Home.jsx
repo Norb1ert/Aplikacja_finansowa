@@ -17,9 +17,9 @@ const handleStart = () => {
     return (
         <div className="main-div-home">
             <h1 className="main-title">
-            Aplikacja do zarządzania budżetem osobistym
+            Finance tracking Application
             </h1>
-            <button onClick={handleStart} className="link">Rozpocznij</button>
+            <button onClick={handleStart} className="link">Lets's start</button>
         </div>
     )
 }

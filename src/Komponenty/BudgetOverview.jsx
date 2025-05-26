@@ -3,7 +3,7 @@
 export default function BudgetOverview({ transactions  }) {
     return (
       <div className="budget-overview">
-        <h3>Historia Transakcji:</h3>
+        <h3>Transaction History:</h3>
         {transactions.map((t) => (
           <div
             key={t._id}
@@ -20,6 +20,6 @@ export default function BudgetOverview({ transactions  }) {
           </div>
         ))}
       </div>
-    );
+    )
   }
   

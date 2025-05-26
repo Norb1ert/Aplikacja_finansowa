@@ -64,8 +64,11 @@ export default function BudgetForm() {
 
   const formattedDate = format(parsedDate, "yyyy-MM-dd"); 
 
+  const rawAmount = Number(amount);
+  const signedAmount = type === "Dochód" ? rawAmount : -Math.abs(rawAmount);
+
     const newTransaction = {
-      amount: Number(amount),
+      amount: signedAmount,
       type,
       category,
       description,
@@ -75,7 +78,7 @@ export default function BudgetForm() {
     const newSaldo = saldo + newTransaction.amount;
 
     if (newTransaction.amount < 0 && newSaldo < 0) {
-      alert('Zbyt mało środków. Zasil swoje konto.');
+      toast.error('Zbyt mało środków. Zasil swoje konto.');
       return;
     }
 
@@ -116,15 +119,15 @@ export default function BudgetForm() {
 
   return (
     <div className="budget-form">
-      <h2>Dodaj Transakcje</h2>
-      <div className="saldo-div">Obecne Saldo: {saldo} zł</div>
+      <h2>Add transaction</h2>
+      <div className="saldo-div">Current saldo: {saldo} zł</div>
 
       <form onSubmit={handleSubmit} className="form-inputs">
         <input
           type="number"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          placeholder="Kwota"
+          placeholder="Amount"
           required
           className="input-form"
         />
@@ -134,24 +137,29 @@ export default function BudgetForm() {
             required
             className="input-form"
             >
-            <option value="">Wybierz typ</option>
-            <option value="Dochód">Dochód</option>
-            <option value="Wydatek">Wydatek</option>
+            <option value="">Choose a type</option>
+            <option value="Dochód">Income</option>
+            <option value="Wydatek">Expanse</option>
           </select>
 
-        <input
-          type="text"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          placeholder="Kategoria"
-          required
-          className="input-form"
-        />
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            required
+            className="input-form">
+              <option value="">Choose category</option>
+              <option value="Food">Food</option>
+              <option value="Transport">Transport</option>
+              <option value="Activities">Activities</option>
+              <option value="Rent">Rent</option>
+              <option value="Income">Income</option>
+          </select>
+
          <input
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="Opis"
+          placeholder="Description"
           required
           className="input-form"
         />
@@ -159,11 +167,11 @@ export default function BudgetForm() {
           type="text"
           value={date}
           onChange={(e) => setDate(e.target.value)}
-          placeholder="Data"
+          placeholder="Date"
           required
           className="input-form"
         />
-        <button type="submit">Dodaj transakcje</button>
+        <button type="submit">Add transaction</button>
       </form>
 
     

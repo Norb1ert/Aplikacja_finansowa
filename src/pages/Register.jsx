@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 
 export default function Register() {
   const API = import.meta.env.VITE_API_URL;
+  const [loading, setIsLoading] = useState(false);
 
   const navigate = useNavigate()
   const [name, setName] = useState('');
@@ -13,6 +14,7 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); 
+    setIsLoading(true);
 
     try {
       const res = await fetch(`${API}/register`, {
@@ -31,15 +33,17 @@ export default function Register() {
       }
     } catch (err) {
       console.error('Błąd sieci:', err);
+    } finally {
+      setIsLoading(false)
     }
   };
 
   return (
     <div className='register-form-container'>
-      <h1>Rejestracja</h1>
+      <h1>Register</h1>
       <form onSubmit={handleSubmit} className="form-inputs">
         <input
-          placeholder="Imię"
+          placeholder="Name"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -55,16 +59,16 @@ export default function Register() {
           className="input-form"
         />
         <input
-          placeholder="Hasło"
+          placeholder="Password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
           className="input-form"
         />
-        <button type="submit" className='register-button'>Zarejestruj</button>
+        <button type="submit" className='register-button' disabled={loading}> {loading ? "Registering user..." : "Register"}</button>
         <p>
-        Jesteś juz uzytkownikiem? <Link to="/login">Zaloguj się</Link>
+        Already a user? <Link to="/login">Log in</Link>
         </p>
       </form>
     </div>

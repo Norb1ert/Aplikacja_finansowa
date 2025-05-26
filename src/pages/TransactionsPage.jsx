@@ -87,18 +87,18 @@ const handleEdit = async (updatedTransaction) => {
 
     return (
         <div className="budget-overview">
-            <h1>Historia Transakcji</h1>
+            <h1>Transactions history</h1>
 
             <div className="budget-history">
               <div className="filters-container">
-              <button className="filter-button-charts" onClick={() => navigate("/app/transactions/charts")}>Wykresy</button>
-                <button className="filter-button" onClick={() => setSearchParams({filter: "last30days"})}>Ostatnie 30 dni</button>
-                <button className="filter-button" onClick={() => setSearchParams({filter: "Dochód"})}>Wpłaty</button>
-                <button className="filter-button" onClick={() => setSearchParams({filter: "Wydatek"})}>Wydatki</button>
-                <button className="filter-button" onClick={() => setSearchParams("/")}>Wszytskie</button>
+              <button className="filter-button-charts" onClick={() => navigate("/app/transactions/charts")}>Charts</button>
+                <button className="filter-button" onClick={() => setSearchParams({filter: "last30days"})}>Last 30 days</button>
+                <button className="filter-button" onClick={() => setSearchParams({filter: "Dochód"})}>Income</button>
+                <button className="filter-button" onClick={() => setSearchParams({filter: "Wydatek"})}>Expanses</button>
+                <button className="filter-button" onClick={() => setSearchParams("/")}>All</button>
               </div>
                 {transactions.length === 0 ? <h2>
-                    Brak transakcji do wyświetlenia
+                    No data to be shown
                 </h2> : (
                     transactions.map((t) => <TransactionItem key={t._id} transaction={t} onDelete={handleDelete}
                     onEdit={handleEdit}/>)

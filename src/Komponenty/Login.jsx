@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 
 export default function Login() {
   const API = import.meta.env.VITE_API_URL;
+  const [loading, setIsLoading] = useState(false)
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,22 +15,28 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const res = await fetch(`${API}/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password })
-    });
-    console.log("✅ Login API URL:", API);
+    setIsLoading(true);
 
+    try {
 
-    const data = await res.json();
-
-    if (res.ok) {
-      localStorage.setItem('token', data.token);
-      toast.success(data.message);
-      navigate('/app/budget'); 
-    } else {
-      toast.error("Błąd logowania");
+      const res = await fetch(`${API}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await res.json();
+      
+      if (res.ok) {
+        localStorage.setItem('token', data.token);
+        toast.success(data.message);
+        navigate('/app/budget'); 
+      } else {
+        toast.error("Błąd logowania");
+      }
+    } catch (err){
+      toast.error("Wystąpił błąd: " + err.message);
+    } finally {
+      setIsLoading(false);
     }
 
 
@@ -37,7 +44,7 @@ export default function Login() {
 
   return (
     <div className='login-container'>
-      <h1>Logowanie</h1>
+      <h1>Log in</h1>
       <form onSubmit={handleLogin} className="form-inputs-l">
         <input
           placeholder="Email"
@@ -48,14 +55,14 @@ export default function Login() {
           className="input-form"
         />
         <input
-          placeholder="Hasło"
+          placeholder="Password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
           className="input-form"
         />
-        <button type="submit" className='login-button'>Zaloguj się</button>
+        <button type="submit" className='login-button' disabled={loading}> {loading ? 'Logging in...' : "Log in"}</button>
       </form>
     </div>
   );

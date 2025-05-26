@@ -31,7 +31,7 @@ const [transactions, setTransactions] = useState([]);
 
     return (
         <div className='budget-page-container'>
-            <h1>Wprowadź dane</h1>
+            <h1>Introduce data</h1>
             <BudgetForm transactions={transactions}/>
         </div>
     )

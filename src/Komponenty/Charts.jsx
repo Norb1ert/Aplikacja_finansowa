@@ -28,7 +28,7 @@ const API = import.meta.env.VITE_API_URL;
   }, [API]);
 
   if (!transactions.length) {
-    return <p>Brak danych do wyświetlenia wykresów.</p>;
+    return <p>No data to be shown</p>;
   }
 
   // Chart 1: Pie - Dochód vs Wydatek
@@ -57,9 +57,9 @@ const API = import.meta.env.VITE_API_URL;
     .sort((a, b) => new Date(a.date) - new Date(b.date));
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", padding: "2rem" }}>
-      <div>
-        <h3>Dochód vs Wydatek</h3>
+    <div className="charts">
+      <div className="chart-box">
+        <h3>Income vs Expances</h3>
         <PieChart width={400} height={300}>
           <Pie data={summary} cx="50%" cy="50%" outerRadius={100} dataKey="value" label>
             {summary.map((entry, index) => (
@@ -71,8 +71,8 @@ const API = import.meta.env.VITE_API_URL;
         </PieChart>
       </div>
 
-      <div>
-        <h3>Kwoty według kategorii</h3>
+      <div className="chart-box">
+        <h3>Spendings by category</h3>
         <BarChart width={400} height={300} data={categoryData}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="category" />
@@ -84,7 +84,7 @@ const API = import.meta.env.VITE_API_URL;
       </div>
 
       <div style={{ gridColumn: "span 2" }}>
-        <h3>Trend transakcji w czasie</h3>
+        <h3>Tendency over time</h3>
         <LineChart width={800} height={300} data={trendData}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" />
